@@ -1,5 +1,6 @@
 import { handleFilterChange } from "../../redux/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { selectFilter } from "../../redux/selectors";
 
 export function Filter() {
   const handleInputChange = (event) => {
@@ -7,7 +8,7 @@ export function Filter() {
     dispatch(handleFilterChange(value));
   };
 
-  const filter = useSelector(s => s.filter);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch()
   return <input type="text" onChange={handleInputChange} value={filter} />;
 }

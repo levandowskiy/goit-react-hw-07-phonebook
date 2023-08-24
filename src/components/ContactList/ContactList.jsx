@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteContact } from "../../redux/operations";
 import { useEffect } from "react";
 import { fetchContacts } from "../../redux/operations";
+import { selectFilteredContacts } from "../../redux/selectors"
+
 
 export function ContactList() {
   const dispatch = useDispatch();
@@ -12,10 +14,7 @@ export function ContactList() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const contacts = useSelector(s => s.contacts.contacts.items);
-  const filter = useSelector(s => s.filter);
-  console.log(contacts);
-  const filteredContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
+  const filteredContacts = useSelector(selectFilteredContacts);
 
   return (
     <>
